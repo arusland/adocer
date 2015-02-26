@@ -29,6 +29,7 @@ public class MainApp {
             outputFile = new File(args[1]);
         }
 
+        System.out.println("Generating file " + outputFile + "...");
         renderToFile(inputFile, outputFile);
     }
 
@@ -67,7 +68,7 @@ public class MainApp {
 
         if (embedAssets) {
             attributesBuilder.linkCss(false);
-            attributesBuilder.dataUri(true);
+            attributesBuilder.dataUri(false);
         }
         if (imagesDir != null) {
             attributesBuilder.imagesDir(imagesDir);
