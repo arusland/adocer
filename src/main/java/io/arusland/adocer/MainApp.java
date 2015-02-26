@@ -3,6 +3,8 @@ package io.arusland.adocer;
 /**
  * Created by arusland on 24.02.2015.
  */
+
+import org.apache.commons.io.FilenameUtils;
 import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.AttributesBuilder;
 import org.asciidoctor.OptionsBuilder;
@@ -12,27 +14,29 @@ import java.io.*;
 
 public class MainApp {
     public static void main(String[] args) throws IOException {
-        if (args.length < 2){
+        if (args.length < 1) {
             System.out.println("USAGE: adoc input.adoc output.html");
             return;
         }
 
-        renderToFile(new File(args[0]), new File(args[1]));
-    }
+        final File inputFile = new File(args[0]);
+        File outputFile;
 
-    private static void renderFile(File sourceFile, File outputDirectory, boolean embedAssets, String imagesDir)
-    {
-        final OptionsBuilder optionsBuilder = getOptionsBuilder(embedAssets, imagesDir);
-        optionsBuilder.toDir(outputDirectory).destinationDir(outputDirectory);
+        if (args.length < 2) {
+            // if output filename not defined, make it from input file
+            outputFile = new File(FilenameUtils.removeExtension(inputFile.getAbsolutePath()) + ".html");
+        } else {
+            outputFile = new File(args[1]);
+        }
 
-        renderFileInternal(sourceFile, optionsBuilder);
+        renderToFile(inputFile, outputFile);
     }
 
     private static void renderToFile(File fileSource, File fileDest) throws IOException {
         renderToFileInternal(fileSource, fileDest, getOptionsBuilder(true, null));
     }
 
-    private static void renderToFileInternal(File fileSource, File fileDest, OptionsBuilder optionsBuilder) throws IOException {
+    private static void renderToFileInternal(final File fileSource, final File fileDest, final OptionsBuilder optionsBuilder) throws IOException {
         FileReader reader = new FileReader(fileSource);
         FileWriter writer = new FileWriter(fileDest);
 
@@ -41,6 +45,13 @@ public class MainApp {
 
         reader.close();
         writer.close();
+    }
+
+    private static void renderFile(File sourceFile, File outputDirectory, boolean embedAssets, String imagesDir) {
+        final OptionsBuilder optionsBuilder = getOptionsBuilder(embedAssets, imagesDir);
+        optionsBuilder.toDir(outputDirectory).destinationDir(outputDirectory);
+
+        renderFileInternal(sourceFile, optionsBuilder);
     }
 
     protected static void renderFileInternal(File fileSource, OptionsBuilder optionsBuilder) {
