@@ -1,0 +1,51 @@
+= adocer
+Asciidoctor wrapper over asciidoctorj
+
+== Build
+	mvn package
+
+== Usage
+	java -jar adocer-x.x.jar [options] input.adoc [output.html]
+	  Options:
+	    -backend
+	       Sets backend option (e.g., html5, pdf, docbook)
+	       Default: html5
+	    -compact
+	       Compact the output removing blank lines
+	       Default: false
+	    -datauri
+	       Images should be embedded
+	       Default: false
+	    -doctype
+	       Sets doctype option (e.g., article, book)
+	       Default: article
+	    -headerfooter
+	       Sets header footer attribute
+	       Default: true
+	    -highlighter
+	       Name of the source highlighting library (e.g., coderay).
+	       Default: prettify
+	    -icons
+	       Sets which admonition icons to use
+	       Default: font
+	    -imgdir
+	       Sets image directory
+	    -linkcss
+	       Css is linked, otherwise css is embedded
+	       Default: false
+
+
+== License
+----
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+----
