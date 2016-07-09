@@ -1,3 +1,5 @@
-java -Dfile.encoding=UTF-8 -jar %~dp0adocer-1.0.jar %1 %2
+@echo off
+rem USAGE: adoc_open file.adoc file1.html
+call adoc.cmd %*
 
 start %2

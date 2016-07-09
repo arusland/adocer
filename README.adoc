@@ -6,6 +6,10 @@ Asciidoctor wrapper over asciidoctorj
 	mvn package
 
 == Usage
+	adoc.cmd [options] input.adoc [output.html]
+
+	or
+
 	java -jar adocer-x.x.jar [options] input.adoc [output.html]
 	  Options:
 	    -backend
