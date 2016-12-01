@@ -2,10 +2,10 @@
 set ERROR_CODE=0
 
 SET JARFILE=
-FOR %%I in (adocer-*.jar) DO SET JARFILE=%%I 
+FOR %%I in (%~dp0adocer-*.jar) DO SET JARFILE=%%I 
 
 if "%JARFILE%" == "" goto jarnotfound
-java -Dfile.encoding=UTF-8 -jar %~dp0%JARFILE% %*
+java -Dfile.encoding=UTF-8 -jar %JARFILE% %*
 
 goto end
 
